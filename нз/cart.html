@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Книжный магазин</h1>
+        <p>Корзина</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html" class="active">Корзина</a>
+            <a href="login.html">Вход</a>
+            <a href="register.html">Регистрация</a>
+        </nav>
+
+        <h2>Корзина</h2>
+        <div id="cart-items">
+            <!-- Здесь будут отображаться товары в корзине -->
+        </div>
+        <p id="total-price">Итого: 0 руб.</p>
+        <button onclick="clearCart()">Очистить корзину</button>
+        <button onclick="checkout()">Оформить заказ</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для отображения корзины
+        function displayCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartItems = document.getElementById('cart-items');
+            let totalPrice = 0;
+
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                let itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <p>${item.name} - ${item.price} руб.</p>
+                `;
+                cartItems.appendChild(itemElement);
+                totalPrice += item.price;
+            });
+
+            document.getElementById('total-price').textContent = `Итого: ${totalPrice} руб.`;
+        }
+
+        // Функция для очистки корзины
+        function clearCart() {
+            localStorage.removeItem('cart');
+            displayCart();
+        }
+
+        // Функция для оформления заказа
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length > 0) {
+                let user = JSON.parse(localStorage.getItem('user'));
+                if (user) {
+                    alert('Заказ оформлен!');
+                    localStorage.removeItem('cart');
+                    displayCart();
+                } else {
+                    alert('Пожалуйста, войдите или зарегистрируйтесь.');
+                }
+            } else {
+                alert('Ваша корзина пуста.');
+            }
+        }
+
+        // Отображаем корзину при загрузке страницы
+        displayCart();
+    </script>
+</body>
+</html>

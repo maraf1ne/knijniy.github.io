@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <img src="logo.jpg" alt="Логотип" class="logo">
+    <h1>Книжный магазин</h1>
+    <p>Добро пожаловать в мир книг! У нас вы найдете книги на любой вкус.</p>
+    <button onclick="window.location.href='catalog.html'">Купить</button>
+</header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="active">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html">Корзина</a>
+            <a href="login.html">Вход</a>
+            <a href="register.html">Регистрация</a>
+        </nav>
+
+        <h2>Добро пожаловать в наш книжный магазин!</h2>
+        <p>Мы предлагаем широкий выбор книг на любой вкус. У нас вы найдете как классику, так и современные бестселлеры.</p>
+
+        <h3>Почему выбирают нас?</h3>
+        <ul>
+            <li>Большой выбор книг.</li>
+            <li>Доступные цены.</li>
+            <li>Быстрая доставка.</li>
+            <li>Постоянные акции и скидки.</li>
+        </ul>
+
+        <h3>Новинки</h3>
+        <div class="book-list">
+            <div class="book">
+                <img src="https://img-gorod.ru/28/461/2846179_detail.jpg" alt="Книга 1">
+                <h3>Круть</h3>
+                <p>Автор: Виктор Пелевин</p>
+                <p class="price">Цена: 1 104 руб.</p>
+                <button onclick="addToCart('Круть', 1104)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/462/2846203_detail.jpg" alt="Книга 2">
+                <h3>Если все кошки в мире исчезнут</h3>
+                <p>Автор: Гэнки Кавамура</p>
+                <p class="price">Цена: 600 руб.</p>
+                <button onclick="addToCart('Если все кошки в мире исчезнут', 600)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/463/2846304_detail.jpg" alt="Книга 3">
+                <h3>Убийства и кексики</h3>
+                <p>Автор: Боланд Питер</p>
+                <p class="price">Цена: 700 руб.</p>
+                <button onclick="addToCart('Убийства и кексики', 700)">В корзину</button>
+            </div>
+        </div>
+
+        <h3>Полезные статьи</h3>
+        <div class="articles">
+            <div class="article">
+                <h4>Как выбрать первую книгу для ребенка?</h4>
+                <p>Выбор первой книги для ребенка — важный шаг в его развитии. Мы расскажем, на что обратить внимание при выборе.</p>
+                <a href="#">Читать далее</a>
+            </div>
+        </div>
+
+        <h3>Наш адрес на карте</h3>
+        <p>Мы находимся по адресу: г. Чебоксары, Чувашская республика, ул. Тракторостроителей, 56к1.</p>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h2>Корзина</h2>
+            <div id="modal-cart-items">
+                <!-- Здесь будут отображаться товары в корзине -->
+            </div>
+            <p id="modal-total-price">Итого: 0 руб.</p>
+            <button onclick="clearCart()">Очистить корзину</button>
+            <button onclick="checkout()">Оформить заказ</button>
+        </div>
+    </div>
+
+    <div class="cart-icon" onclick="openCartModal()">
+        <span id="cart-count">0</span>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_API_ключ&lang=ru_RU" type="text/javascript"></script>
+    <script>
+        // Функция для добавления книги в корзину
+        function addToCart(bookName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: bookName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification(`${bookName} добавлена в корзину!`);
+        }
+
+        // Функция для обновления счетчика корзины
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+
+        // Функция для открытия корзины
+        function openCartModal() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let modalCartItems = document.getElementById('modal-cart-items');
+            let modalTotalPrice = 0;
+
+            modalCartItems.innerHTML = '';
+            cart.forEach(item => {
+                let itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <p>${item.name} - ${item.price} руб.</p>
+                `;
+                modalCartItems.appendChild(itemElement);
+                modalTotalPrice += item.price;
+            });
+
+            document.getElementById('modal-total-price').textContent = `Итого: ${modalTotalPrice} руб.`;
+            document.getElementById('cart-modal').style.display = 'block';
+        }
+
+        // Функция для закрытия корзины
+        function closeCartModal() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        // Функция для очистки корзины
+        function clearCart() {
+            localStorage.removeItem('cart');
+            updateCartCount();
+            openCartModal();
+        }
+
+        // Функция для оформления заказа
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length > 0) {
+                let user = JSON.parse(localStorage.getItem('user'));
+                if (user) {
+                    alert('Заказ оформлен!');
+                    localStorage.removeItem('cart');
+                    updateCartCount();
+                    openCartModal();
+                } else {
+                    alert('Пожалуйста, войдите или зарегистрируйтесь.');
+                }
+            } else {
+                alert('Ваша корзина пуста.');
+            }
+        }
+
+        // Функция для отображения уведомлений
+        function showNotification(message) {
+            let notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Инициализация Яндекс.Карты
+        ymaps.ready(init);
+        function init() {
+            let myMap = new ymaps.Map("map", {
+                center: [56.102112, 47.316736], // Координаты Чебоксар
+                zoom: 15
+            });
+
+            let myPlacemark = new ymaps.Placemark([56.102112, 47.316736], {
+                hintContent: 'Книжный магазин',
+                balloonContent: 'Мы находимся здесь: ул. Тракторостроителей, 56к1'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+
+        // Обновляем счетчик корзины при загрузке страницы
+        updateCartCount();
+    </script>
+</body>
+</html>

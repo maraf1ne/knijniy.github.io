@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Книжный магазин</h1>
+        <p>Регистрация</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html">Корзина</a>
+            <a href="login.html">Вход</a>
+            <a href="register.html" class="active">Регистрация</a>
+        </nav>
+
+        <div class="auth-form">
+            <h2>Регистрация</h2>
+            <input type="text" id="register-name" placeholder="Имя">
+            <input type="email" id="register-email" placeholder="Email">
+            <input type="password" id="register-password" placeholder="Пароль">
+            <button onclick="register()">Зарегистрироваться</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function register() {
+            let name = document.getElementById('register-name').value;
+            let email = document.getElementById('register-email').value;
+            let password = document.getElementById('register-password').value;
+
+            // Простая проверка (в реальном проекте используйте серверную регистрацию)
+            if (name && email && password) {
+                localStorage.setItem('user', JSON.stringify({ name: name, email: email }));
+                alert('Вы успешно зарегистрировались!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Пожалуйста, заполните все поля.');
+            }
+        }
+    </script>
+</body>
+</html>
+<script>
+    function register() {
+        let name = document.getElementById('register-name').value;
+        let email = document.getElementById('register-email').value;
+        let password = document.getElementById('register-password').value;
+
+        if (!name || !email || !password) {
+            alert('Пожалуйста, заполните все поля.');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            alert('Пожалуйста, введите корректный email.');
+            return;
+        }
+
+        if (password.length < 6) {
+            alert('Пароль должен содержать не менее 6 символов.');
+            return;
+        }
+
+        localStorage.setItem('user', JSON.stringify({ name: name, email: email }));
+        alert('Вы успешно зарегистрировались!');
+        window.location.href = 'index.html';
+    }
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+</script>

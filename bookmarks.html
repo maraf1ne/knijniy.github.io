@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Закладки - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Книжный магазин</h1>
+        <p>Закладки</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html">Корзина</a>
+            <a href="login.html">Вход</a>
+            <a href="register.html">Регистрация</a>
+        </nav>
+
+        <h2>Ваши закладки</h2>
+        <div class="bookmarks">
+            <ul id="bookmarks-list">
+                <!-- Здесь будут отображаться закладки -->
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для отображения закладок
+        function displayBookmarks() {
+            let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            let bookmarksList = document.getElementById('bookmarks-list');
+
+            bookmarksList.innerHTML = '';
+            bookmarks.forEach(bookmark => {
+                let bookmarkElement = document.createElement('li');
+                bookmarkElement.innerHTML = `
+                    <p>${bookmark.name} - ${bookmark.price} руб.</p>
+                `;
+                bookmarksList.appendChild(bookmarkElement);
+            });
+        }
+
+        // Отображаем закладки при загрузке страницы
+        displayBookmarks();
+    </script>
+</body>
+</html>

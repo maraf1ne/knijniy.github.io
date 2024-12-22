@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказы - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Книжный магазин</h1>
+        <p>Заказы</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html">Корзина</a>
+            <a href="login.html">Вход</a>
+            <a href="register.html">Регистрация</a>
+        </nav>
+
+        <h2>Ваши заказы</h2>
+        <div class="orders">
+            <ul id="orders-list">
+                <!-- Здесь будут отображаться заказы -->
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для отображения заказов
+        function displayOrders() {
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+            let ordersList = document.getElementById('orders-list');
+
+            ordersList.innerHTML = '';
+            orders.forEach(order => {
+                let orderElement = document.createElement('li');
+                orderElement.innerHTML = `
+                    <p>Заказ на сумму: ${order.totalPrice} руб.</p>
+                `;
+                ordersList.appendChild(orderElement);
+            });
+        }
+
+        // Отображаем заказы при загрузке страницы
+        displayOrders();
+    </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Книжный магазин</h1>
+        <p>Каталог книг</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html" class="active">Каталог</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html">Корзина</a>
+        </nav>
+
+        <h2>Каталог книг</h2>
+        <div class="category">
+            <h3>Художественная литература</h3>
+            <button onclick="window.location.href='fiction.html'">Посмотреть все</button>
+        </div>
+        <div class="category">
+            <h3>Научная литература</h3>
+            <button onclick="window.location.href='science.html'">Посмотреть все</button>
+        </div>
+        <div class="category">
+            <h3>Детские книги</h3>
+            <button onclick="window.location.href='children.html'">Посмотреть все</button>
+        </div>
+
+        <div class="book-list">
+            <div class="book">
+                <img src="https://img-gorod.ru/28/461/2846179_detail.jpg" alt="Книга 1">
+                <h3>Круть</h3>
+                <p>Автор: Виктор Пелевин</p>
+                <p class="price">Цена: 1 104 руб.</p>
+                <button onclick="addToCart('Круть', 1104)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/462/2846203_detail.jpg" alt="Книга 2">
+                <h3>Если все кошки в мире исчезнут</h3>
+                <p>Автор: Гэнки Кавамура</p>
+                <p class="price">Цена: 600 руб.</p>
+                <button onclick="addToCart('Если все кошки в мире исчезнут', 600)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/463/2846304_detail.jpg" alt="Книга 3">
+                <h3>Убийства и кексики</h3>
+                <p>Автор: Боланд Питер</p>
+                <p class="price">Цена: 700 руб.</p>
+                <button onclick="addToCart('Убийства и кексики', 700)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/464/2846405_detail.jpg" alt="Книга 4">
+                <h3>Кафе на краю земли</h3>
+                <p>Автор: Стрелеки Джон</p>
+                <p class="price">Цена: 550 руб.</p>
+                <button onclick="addToCart('Кафе на краю земли', 550)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/465/2846506_detail.jpg" alt="Книга 5">
+                <h3>Атомные привычки</h3>
+                <p>Автор: Клир Джеймс</p>
+                <p class="price">Цена: 650 руб.</p>
+                <button onclick="addToCart('Атомные привычки', 650)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/466/2846607_detail.jpg" alt="Книга 6">
+                <h3>Хороших девочек не убивают</h3>
+                <p>Автор: Джексон Холли</p>
+                <p class="price">Цена: 750 руб.</p>
+                <button onclick="addToCart('Хороших девочек не убивают', 750)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/467/2846708_detail.jpg" alt="Книга 7">
+                <h3>Человек недостойный</h3>
+                <p>Автор: Дадзай Осаму</p>
+                <p class="price">Цена: 800 руб.</p>
+                <button onclick="addToCart('Человек недостойный', 800)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/468/2846809_detail.jpg" alt="Книга 8">
+                <h3>Сказать жизни "ДА!"</h3>
+                <p>Автор: Франкл Виктор</p>
+                <p class="price">Цена: 850 руб.</p>
+                <button onclick="addToCart('Сказать жизни "ДА!"', 850)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/469/2846910_detail.jpg" alt="Книга 9">
+                <h3>Опасная игра бабули</h3>
+                <p>Автор: Перрин Кристен</p>
+                <p class="price">Цена: 900 руб.</p>
+                <button onclick="addToCart('Опасная игра бабули', 900)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/470/2847011_detail.jpg" alt="Книга 10">
+                <h3>Четвертое крыло</h3>
+                <p>Автор: Яррос Ребекка</p>
+                <p class="price">Цена: 950 руб.</p>
+                <button onclick="addToCart('Четвертое крыло', 950)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/471/2847112_detail.jpg" alt="Книга 11">
+                <h3>1984</h3>
+                <p>Автор: Джордж Оруэлл</p>
+                <p class="price">Цена: 700 руб.</p>
+                <button onclick="addToCart('1984', 700)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/472/2847213_detail.jpg" alt="Книга 12">
+                <h3>Убить пересмешника</h3>
+                <p>Автор: Харпер Ли</p>
+                <p class="price">Цена: 650 руб.</p>
+                <button onclick="addToCart('Убить пересмешника', 650)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/473/2847314_detail.jpg" alt="Книга 13">
+                <h3>Великий Гэтсби</h3>
+                <p>Автор: Фрэнсис Скотт Фицджеральд</p>
+                <p class="price">Цена: 750 руб.</p>
+                <button onclick="addToCart('Великий Гэтсби', 750)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/474/2847415_detail.jpg" alt="Книга 14">
+                <h3>Сто лет одиночества</h3>
+                <p>Автор: Габриэль Гарсиа Маркес</p>
+                <p class="price">Цена: 800 руб.</p>
+                <button onclick="addToCart('Сто лет одиночества', 800)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/475/2847516_detail.jpg" alt="Книга 15">
+                <h3>Мастер и Маргарита</h3>
+                <p>Автор: Михаил Булгаков</p>
+                <p class="price">Цена: 900 руб.</p>
+                <button onclick="addToCart('Мастер и Маргарита', 900)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/476/2847617_detail.jpg" alt="Книга 16">
+                <h3>Три товарища</h3>
+                <p>Автор: Эрих Мария Ремарк</p>
+                <p class="price">Цена: 850 руб.</p>
+                <button onclick="addToCart('Три товарища', 850)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/477/2847718_detail.jpg" alt="Книга 17">
+                <h3>Над пропастью во ржи</h3>
+                <p>Автор: Джером Д. Сэлинджер</p>
+                <p class="price">Цена: 700 руб.</p>
+                <button onclick="addToCart('Над пропастью во ржи', 700)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/478/2847819_detail.jpg" alt="Книга 18">
+                <h3>Гарри Поттер и философский камень</h3>
+                <p>Автор: Джоан Роулинг</p>
+                <p class="price">Цена: 600 руб.</p>
+                <button onclick="addToCart('Гарри Поттер и философский камень', 600)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/479/2847920_detail.jpg" alt="Книга 19">
+                <h3>Унесенные ветром</h3>
+                <p>Автор: Маргарет Митчелл</p>
+                <p class="price">Цена: 950 руб.</p>
+                <button onclick="addToCart('Унесенные ветром', 950)">В корзину</button>
+            </div>
+            <div class="book">
+                <img src="https://img-gorod.ru/28/480/2848021_detail.jpg" alt="Книга 20">
+                <h3>Маленькие женщины</h3>
+                <p>Автор: Луиза Мэй Олкотт</p>
+                <p class="price">Цена: 750 руб.</p>
+                <button onclick="addToCart('Маленькие женщины', 750)">В корзину</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для добавления книги в корзину
+        function addToCart(bookName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: bookName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${bookName} добавлена в корзину!`);
+        }
+    </script>
+</body>
+</html>

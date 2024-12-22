@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Книжный магазин</h1>
+        <p>Тест о книжном магазине</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html">Корзина</a>
+            <a href="quiz.html" class="active">Тест</a>
+        </nav>
+
+        <h2>Тест о книжном магазине</h2>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. Какой самый популярный жанр в нашем магазине?</p>
+                <label><input type="radio" name="q1" value="a"> Детективы</label>
+                <label><input type="radio" name="q1" value="b"> Фантастика</label>
+                <label><input type="radio" name="q1" value="c"> Романы</label>
+            </div>
+            <div class="question">
+                <p>2. Какой автор представлен в нашем магазине?</p>
+                <label><input type="radio" name="q2" value="a"> Виктор Пелевин</label>
+                <label><input type="radio" name="q2" value="b"> Стивен Кинг</label>
+                <label><input type="radio" name="q2" value="c"> Джон Рональд Руэл Толкин</label>
+            </div>
+            <!-- Добавьте больше вопросов -->
+            <button type="submit">Завершить тест</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.getElementById('quiz-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            // Логика подсчета результата
+            if (document.querySelector('input[name="q1"]:checked').value === 'c') score++;
+            if (document.querySelector('input[name="q2"]:checked').value === 'a') score++;
+            // Добавьте больше проверок для других вопросов
+            document.getElementById('result').textContent = `Ваш результат: ${score} из 10`;
+        });
+    </script>
+</body>
+</html>

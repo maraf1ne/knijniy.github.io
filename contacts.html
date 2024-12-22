@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Книжный магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Книжный магазин</h1>
+        <p>Контактная информация</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="contacts.html" class="active">Контакты</a>
+            <a href="about.html">О нас</a>
+            <a href="cart.html">Корзина</a>
+        </nav>
+
+        <h2>Контакты</h2>
+        <p>Телефон: +7 919 674 3991</p>
+        <p>Адрес: Чебоксары, ул. Тракторостроителей, 56к1</p>
+        <p>Email: pertsov@bookstore.ru</p>
+        <p>Социальные сети:</p>
+        <ul>
+            <li><a href="https://vk.com/bookstore">VK</a></li>
+            <li><a href="https://www.facebook.com/bookstore">Facebook</a></li>
+            <li><a href="https://www.instagram.com/bookstore">Instagram</a></li>
+        </ul>
+
+        <form action="submit_form.php" method="post" class="contact-form">
+            <h2>Обратная связь</h2>
+            <div class="form-group">
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Ваш email:</label>
+                <input type="email" id="email" name="email" placeholder="Ваш email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Ваше сообщение:</label>
+                <textarea id="message" name="message" placeholder="Ваше сообщение" required></textarea>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+
+        <div id="map" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Книжный магазин. Все права защищены.</p>
+    </footer>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_API_ключ&lang=ru_RU" type="text/javascript"></script>
+    <script>
+        ymaps.ready(init);
+        function init() {
+            let myMap = new ymaps.Map("map", {
+                center: [56.102112, 47.316736], // Координаты Чебоксар
+                zoom: 15
+            });
+
+            let myPlacemark = new ymaps.Placemark([56.102112, 47.316736], {
+                hintContent: 'Книжный магазин',
+                balloonContent: 'Мы находимся здесь: ул. Тракторостроителей, 56к1'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+    </script>
+</body>
+</html>
